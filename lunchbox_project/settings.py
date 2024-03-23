@@ -31,6 +31,8 @@ ALLOWED_HOSTS = ['8000-jjsemaan-nadas-kitchen-lb134686n3.us1.codeanyapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'customer',
+    'kitchen',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
