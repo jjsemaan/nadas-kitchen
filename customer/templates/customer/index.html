@@ -1,11 +1,17 @@
-{% extends 'base.html' %} <!-- This line extends the base.html template, inheriting its structure and content -->
+{% extends 'base.html' %}
 
-{% block content %} <!-- This block defines a section named 'content' that can be overridden in the extended template -->
-<div class="container mb-5"> <!-- Bootstrap class to create a responsive container with margin bottom -->
-    <div class="row justify-content-center mt-5"> <!-- Bootstrap class to create a row with content centered horizontally and margin top -->
-        <div class="col-md-8 col-sm-12 offset-md-1 text-center"> <!-- Bootstrap classes to create a column with different widths depending on the screen size, offset it by one column width for medium screens, and center the text -->
-            <h1>Oreder Your Lunchbox</h1> 
+{% block content %}
+<div class="container mb-5">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8 col-sm-12 offset-md-1 text-center">
+            <h1>Oreder Your Lunchbox</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-1">
+        <div class="card col-md-5 col-sm-12 offset-md-1 p-4 text-center">
+            <h2>Book Your Lunchbox</h2>
+            <button class="btn btn-outline-primary">Order Now!</button>
         </div>
     </div>
 </div>
-{% endblock content %} <!-- End of the 'content' block -->
+{% endblock content %}
