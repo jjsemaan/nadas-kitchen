@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-0(s6g97nky_qp7w4ynok-fr5rmxqe5&^7&sx0r-$3qd-v+*l*0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-jjsemaan-nadas-kitchen-lb134686n3.us1.codeanyapp.com']
+ALLOWED_HOSTS = ['8001-jjsemaan-nadas-kitchen-lb134686n3.us1.codeanyapp.com']
 
 
 # Application definition
@@ -56,7 +57,10 @@ ROOT_URLCONF = 'lunchbox_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),  # Include project-level templates directory
+            os.path.join(BASE_DIR, 'lunchbox_project', 'templates'),  # Include app-level templates directory
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
