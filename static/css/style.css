@@ -37,6 +37,7 @@ header.masthead .site-heading {
 header.masthead .page-heading,
 header.masthead .site-heading {
     text-align: center;
+    padding-top: 300px; /* Adjust this value as needed to shift the image down */
 }
 
 header.masthead .page-heading h1,
