@@ -37,14 +37,14 @@ ALLOWED_HOSTS = ['8000-jjsemaan-nadas-kitchen-lb134686n3.us1.codeanyapp.com','.h
 # Application definition
 
 INSTALLED_APPS = [
-    'customer',
-    'kitchen',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'customer',
+    'kitchen',
 ]
 
 MIDDLEWARE = [
