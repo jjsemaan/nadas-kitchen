@@ -1,39 +1,27 @@
 from django.db import models
-from django.contrib.auth.models import User
+from customers.models import Customer
+# from django.contrib.auth.models import User
 
-STATUS = ((0, "Draft"), (1, "Published"))
+# STATUS = ((0, "Draft"), (1, "Published"))
 
 # Create your models here.
-class Customer(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    name = models.CharField(max_length=255)
-    email = models.EmailField(max_length=255)
-    first_line_address = models.CharField(max_length=255)
-    second_line_address = models.CharField(max_length=255)
-    eir_code = models.CharField(max_length=255)
 
-class MenuItem(models.Model):
-    item_id = models.BigAutoField(primary_key=True)
-    name = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
-    price = models.DecimalField(max_digits=8, decimal_places=2)
-    quantity = models.IntegerField()
-    category = models.CharField(max_length=255)
-    image = models.BinaryField()
 
 class Order(models.Model):
-    order_id = models.BigAutoField(primary_key=True)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
-    delivery_date = models.DateField()
-    delivery_time = models.TimeField()
-    delivery_status = models.CharField(max_length=255)
-    paid = models.BooleanField()
+    # Define the Order model representing orders made by customers.
+    order_id = models.BigAutoField(primary_key=True)  # Unique identifier for the order.
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)  # Reference to the customer placing the order.
+    item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)  # Reference to the menu item ordered.
+    delivery_date = models.DateField()  # Date of delivery for the order.
+    delivery_time = models.TimeField()  # Time of delivery for the order.
+    delivery_status = models.CharField(max_length=255)  # Status of the delivery.
+    paid = models.BooleanField()  # Boolean indicating whether the order has been paid for.
 
 class Receipt(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    description = models.CharField(max_length=255)
-    total = models.DecimalField(max_digits=8, decimal_places=2)
+    # Define the Receipt model representing receipts generated for orders.
+    id = models.BigAutoField(primary_key=True)  # Unique identifier for the receipt.
+    description = models.CharField(max_length=255)  # Description of the receipt.
+    total = models.DecimalField(max_digits=8, decimal_places=2)  # Total amount on the receipt.
 
     class Meta:
-        unique_together = ['id']
+        unique_together = ['id']  # Ensure uniqueness of the 'id' field across receipts.
