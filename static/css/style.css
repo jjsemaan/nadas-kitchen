@@ -1,18 +1,24 @@
-nav {
-    position: fixed; /* Fix the position of the navigation menu */
-    top: 0; /* Align the navigation menu to the top */
-    width: 100%; /* Ensure the navigation menu spans the entire width of the viewport */
-    z-index: 1000; /* Set a high z-index to ensure the navigation menu appears above other elements */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Setting height to viewport height */
+    overflow: hidden; /* Hide overflow */
+    background-image: url('your-image-url.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.site-heading {
+    height: 100vh;
 }
 
 header.masthead {
-    margin-bottom: 50px;
     background: no-repeat center center;
     background-color: #868e96;
-    background-attachment: fixed;
+    background-attachment: scroll;
     position: relative;
     background-size: cover;
-    height: 100vh; /* Set the height to 100% of the viewport height */
 }
 
 header.masthead .overlay {
@@ -33,6 +39,7 @@ header.masthead .site-heading {
 }
 
 @media only screen and (min-width: 768px) {
+
     header.masthead .page-heading,
     header.masthead .post-heading,
     header.masthead .site-heading {
@@ -62,6 +69,7 @@ header.masthead .site-heading .subheading {
 }
 
 @media only screen and (min-width: 768px) {
+
     header.masthead .page-heading h1,
     header.masthead .site-heading h1 {
         font-size: 80px;
@@ -113,9 +121,4 @@ header.masthead .post-heading .meta a {
     }
 }
 
-@media only screen and (min-width: 768px) {
-    header.masthead {
-        height: auto; /* Change the height to auto to allow the background to extend to the footer */
-        min-height: 100vh; /* Ensure the background extends to at least the viewport height */
-    }
-}
+
