@@ -3,7 +3,6 @@ body {
     padding: 0;
     height: 100vh; /* Setting height to viewport height */
     overflow: hidden; /* Hide overflow */
-    background-image: url('your-image-url.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -11,6 +10,10 @@ body {
 
 .site-heading {
     height: 100vh;
+}
+
+.btn {
+    margin-top: 20px;
 }
 
 header.masthead {
