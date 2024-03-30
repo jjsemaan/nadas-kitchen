@@ -1,4 +1,4 @@
-/* masthead css copied from code institute Flask tutorial */
+
 header.masthead {
     margin-bottom: 50px;
     background: no-repeat center center;
@@ -37,7 +37,6 @@ header.masthead .site-heading {
 header.masthead .page-heading,
 header.masthead .site-heading {
     text-align: center;
-    padding-top: 300px; /* Adjust this value as needed to shift the image down */
 }
 
 header.masthead .page-heading h1,
@@ -101,3 +100,12 @@ header.masthead .post-heading .meta a {
         font-size: 30px;
     }
 }
+
+@media only screen and (min-width: 768px) {
+    header.masthead .page-heading,
+    header.masthead .site-heading {
+        padding-top: 340px; /* Adjust this value as needed */
+    }
+}
+
+

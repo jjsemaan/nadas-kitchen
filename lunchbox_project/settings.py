@@ -19,13 +19,15 @@ if os.path.isfile('env.py'):
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+
 # TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-0(s6g97nky_qp7w4ynok-fr5rmxqe5&^7&sx0r-$3qd-v+*l*0'
+# SECRET_KEY = 'django-insecure-0(s6g97nky_qp7w4ynok-fr5rmxqe5&^7&sx0r-$3qd-v+*l*0'
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
