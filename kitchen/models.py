@@ -36,3 +36,54 @@ class Receipt(models.Model):
 
     class Meta:
         unique_together = ['id']  # Ensure uniqueness of the 'id' field across receipts.
+
+'''
+from django.db import models
+from customer.models import Customer
+from server.models import Server  # Import Server model if applicable
+
+class Receipt(models.Model):
+    # Define the Receipt model representing receipts generated for orders.
+
+    # Primary key for the receipt, automatically generated.
+    id = models.BigAutoField(primary_key=True)
+
+    # Date and time of the transaction.
+    transaction_date = models.DateTimeField()
+
+    # Reference to the customer who made the order.
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+
+    # Total amount to be paid, including taxes and discounts.
+    total_amount = models.DecimalField(max_digits=8, decimal_places=2)
+
+    # Payment method used by the customer.
+    payment_method = models.CharField(max_length=100)
+
+    # Reference to the server who took the order, if applicable.
+    server = models.ForeignKey(Server, on_delete=models.SET_NULL, null=True)  # If applicable
+
+    # Additional notes relevant to the transaction.
+    notes = models.TextField(blank=True)
+
+    class Meta:
+        # Define the default ordering of receipts by transaction date.
+        ordering = ['-transaction_date']
+
+
+class ReceiptItem(models.Model):
+    # Define the ReceiptItem model representing individual items on the receipt.
+
+    # Foreign key referencing the parent Receipt.
+    receipt = models.ForeignKey(Receipt, on_delete=models.CASCADE)
+
+    # Name of the item.
+    item_name = models.CharField(max_length=255)
+
+    # Quantity of the item.
+    quantity = models.PositiveIntegerField()
+
+    # Price of the item.
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+
+'''
