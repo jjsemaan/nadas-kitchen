@@ -31,7 +31,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-jjsemaan-nadas-kitchen-lb134686n3.us1.codeanyapp.com','.herokuapp.com']
 
