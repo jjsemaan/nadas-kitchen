@@ -12,7 +12,7 @@
 
       <p>{% blocktrans %}
         Welcome to our platform. Please fill in the form below to sign up.
-        Already have an account? Then please <a class="link" href="{{ login_url }}">sign in</a> instead.
+        If you already have an account, please <a class="link" href="{{ login_url }}">sign in</a> instead.
         {% endblocktrans %}</p>
     </div>
   </div>
@@ -59,6 +59,21 @@
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
         <button class="btn btn-signup right" type="submit">{% trans "Sign Up" %} &raquo;</button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 mt-3 offset-md-2">
+      <form class="signup" id="signup_form" method="post"
+        action="{% url 'account_signup' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}"
+          value="{{ redirect_field_value }}" />
+        {% endif %}
+        <button class="btn btn-signup right" type="submit">
+          {% trans "Sign Up" %} &raquo;</button>
       </form>
     </div>
   </div>

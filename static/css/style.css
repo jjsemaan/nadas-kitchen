@@ -61,3 +61,8 @@ header.masthead .overlay {
         font-size: 80px;
     }
 }
+
+/*signup.html*/
+.btn-signup {
+    margin-bottom: 200px;
+}
