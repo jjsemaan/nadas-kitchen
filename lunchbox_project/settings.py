@@ -77,6 +77,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),  # Include project-level templates directory
             os.path.join(BASE_DIR, 'lunchbox_project', 'templates'),  # Include app-level templates directory
+            os.path.join(BASE_DIR, 'lunchbox_project', 'templates/account'),  # Include app-level templates directory
         ],
         'APP_DIRS': True,
         'OPTIONS': {

@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from customer.views import Index, About
+from customer.views import Index, About, validate_username
+
 # from .views import CustomSignupView  # Import the custom signup view
 
 urlpatterns = [
@@ -24,7 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Index.as_view(), name='index'),
     path('about/', About.as_view(), name='about'),
-    # This URL pattern will be accessed at '/accounts/signup/'
-    # path('accounts/signup/', CustomSignupView.as_view(), name='account_signup'),
+    path('validate_username/', validate_username, name='validate_username'),
 ]
 

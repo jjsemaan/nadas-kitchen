@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% static 'css/style.css' %}
 {% load i18n %}
 
 {% block head_title %}{% trans "Signup" %}{% endblock head_title %}
@@ -37,9 +38,7 @@
     </div>
 
     <!-- Button trigger modal -->
-    <button type="submit" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop">
-      {% trans "Sign Up" %} &raquo;
-    </button>
+    <button type="submit" class="btn btn-dark">{% trans "Sign Up" %} &raquo;</button>
 
     <!--form validation modal-->
     <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -47,21 +46,13 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <h5 class="modal-title" id="staticBackdropLabel">Username Taken</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <div class="modal-body">
-              {% if errors %}
-              <script type="text/javascript">
-                $(document).ready(function () {
-                  $('#staticBackdrop').modal('show');
-                });
-              </script>
-              {% endif %}
-            </div>
+            The username you have chosen is already in use. Please choose a different username.
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -71,4 +62,49 @@
     </div>
   </form>
 </div>
+
+<script>
+  $(document).ready(function () {
+    // Check to ensure jQuery is loaded
+    if (typeof $ === 'undefined') {
+      console.error('jQuery is not loaded. Please make sure jQuery is loaded before this script.');
+      return; // Stop executing the script because jQuery is needed for the rest of the code
+    }
+
+    const signupForm = $('form'); // Using jQuery for consistency
+
+    signupForm.on("submit", function (e) {
+      e.preventDefault();
+      const username = $('#id_username').val(); // Using jQuery for consistency
+
+      // Use the Django URL template tag to ensure the correct endpoint
+      fetch('{% url "validate_username" %}', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': '{{ csrf_token }}',
+        },
+        body: JSON.stringify({ username: username }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.is_taken) {
+          // If username is taken, show the modal using jQuery
+          $('#staticBackdrop').modal('show');
+        } else {
+          // If username is not taken, submit the form. Use JavaScript here since jQuery doesn't have a direct form submission method
+          document.querySelector('form').submit();
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    });
+
+    $('#staticBackdrop').on('click', '.close', function () {
+      $('#staticBackdrop').modal('hide');
+    });
+  });
+</script>
+
 {% endblock content %}
