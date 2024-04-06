@@ -64,35 +64,47 @@
 </div>
 
 <script>
-  $(document).ready(function () {
-    // Check to ensure jQuery is loaded
-    if (typeof $ === 'undefined') {
-      console.error('jQuery is not loaded. Please make sure jQuery is loaded before this script.');
-      return; // Stop executing the script because jQuery is needed for the rest of the code
-    }
+  // Define the getCookie function to retrieve the CSRF token
+  function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+          const cookies = document.cookie.split(';');
+          for (let i = 0; i < cookies.length; i++) {
+              const cookie = cookies[i].trim();
+              if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+              }
+          }
+      }
+      return cookieValue;
+  }
 
-    const signupForm = $('form'); // Using jQuery for consistency
+  // Get the CSRF token
+  const csrftoken = getCookie('csrftoken');
+
+  $(document).ready(function () {
+    // Your existing jQuery ready function
+    const signupForm = $('form');
 
     signupForm.on("submit", function (e) {
       e.preventDefault();
-      const username = $('#id_username').val(); // Using jQuery for consistency
+      const username = $('#id_username').val();
 
-      // Use the Django URL template tag to ensure the correct endpoint
+      // Use the fetched CSRF token in your fetch request
       fetch('{% url "validate_username" %}', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-CSRFToken': '{{ csrf_token }}',
+          'X-CSRFToken': csrftoken, // Use the token here
         },
         body: JSON.stringify({ username: username }),
       })
       .then(response => response.json())
       .then(data => {
         if (data.is_taken) {
-          // If username is taken, show the modal using jQuery
           $('#staticBackdrop').modal('show');
         } else {
-          // If username is not taken, submit the form. Use JavaScript here since jQuery doesn't have a direct form submission method
           document.querySelector('form').submit();
         }
       })
@@ -101,10 +113,12 @@
       });
     });
 
+    // Your modal close functionality
     $('#staticBackdrop').on('click', '.close', function () {
       $('#staticBackdrop').modal('hide');
     });
   });
 </script>
+>
 
 {% endblock content %}
