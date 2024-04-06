@@ -123,6 +123,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Email verification is disabled in this project.
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

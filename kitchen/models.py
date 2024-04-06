@@ -23,10 +23,14 @@ class Order(models.Model):
     order_id = models.BigAutoField(primary_key=True)  # Unique identifier for the order.
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)  # Reference to the customer placing the order.
     item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)  # Reference to the menu item ordered.
+    email = models.OneToOneField(Customer, on_delete=models.CASCADE, related_name='order_email', to_field='email')  # One-to-one relationship with the email field of the Customer model
+    mobile_phone = models.OneToOneField(Customer, on_delete=models.CASCADE, related_name='order_mobile_phone', to_field='mobile_phone')  # One-to-one relationship with the mobile_phone field of the Customer model
     delivery_date = models.DateField()  # Date of delivery for the order.
     delivery_time = models.CharField(max_length=5, choices=HOUR_CHOICES)  # Choice field for delivery time.
     delivery_status = models.CharField(max_length=20, choices=DELIVERY_STATUS_CHOICES)  # Updated field with choices
     paid = models.CharField(max_length=3, choices=PAID_CHOICES)  # Choice field for payment status.
+    address_first_line = models.CharField(max_length=255)
+    eir_code = models.CharField(max_length=255)
 
 class Receipt(models.Model):
     # Define the Receipt model representing receipts generated for orders.
